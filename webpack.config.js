@@ -23,7 +23,7 @@ module.exports = {
   },
   output: {
     filename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     chunkFilename: "[name].[contenthash].js",
     assetModuleFilename: "images/[hash][ext][query]"
   },
@@ -89,7 +89,7 @@ module.exports = {
   ],
   devServer: {
     port: 3500,
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "build"),
     compress: true
   }
 };
