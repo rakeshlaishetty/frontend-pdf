@@ -14,7 +14,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": "prettier --write  --ignore-unknown"
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
   },
   "repository": {
     "type": "git",
