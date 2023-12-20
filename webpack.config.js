@@ -19,40 +19,40 @@ module.exports = {
   target: target,
   devtool: devtool,
   entry: {
-    main: "./src/index.js",
+    main: "./src/index.js"
   },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
     chunkFilename: "[name].[contenthash].js",
-    assetModuleFilename: "images/[hash][ext][query]",
+    assetModuleFilename: "images/[hash][ext][query]"
   },
   performance: {
     maxAssetSize: 50000,
-    maxEntrypointSize: 50000,
+    maxEntrypointSize: 50000
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
-    },
+      chunks: "all"
+    }
   },
   module: {
     rules: [
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: "asset",
+        type: "asset"
       },
       {
         test: /\.(woff|woff2|eot|ttf)$/,
         loader: "url-loader",
-        options: { limit: false },
+        options: { limit: false }
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.(s[ac]|c)ss$/i,
@@ -64,32 +64,32 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  ["autoprefixer"],
+                  ["autoprefixer"]
                   // add more postcss plugins as needed
-                ],
-              },
-            },
+                ]
+              }
+            }
           },
           ,
-          "sass-loader",
-        ],
-      },
-    ],
+          "sass-loader"
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx"]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./src/index.html"
     }),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin()
   ],
   devServer: {
     port: 3500,
     static: path.resolve(__dirname, "dist"),
-    compress: true,
-  },
+    compress: true
+  }
 };
