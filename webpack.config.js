@@ -1,76 +1,95 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const path = require('path')
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-let mode = "development"
-let target = 'web'
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+let mode = "development";
+let target = "web";
 
 if (process.env.NODE_ENV == "production") {
-    mode = "production"
-    target = 'web'
+  mode = "production";
+  target = "web";
 }
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = process.env.NODE_ENV !== "production";
 
-let devtool = isDevelopment ? 'eval-source-map' : 'source-map'
+let devtool = isDevelopment ? "eval-source-map" : "source-map";
 
 module.exports = {
-    mode: mode,
-    target: target,
-    devtool: devtool,
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash].js',
-        chunkFilename: '[name].[contenthash].js',
-        assetModuleFilename: "images/[hash][ext][query]"
+  mode: mode,
+  target: target,
+  devtool: devtool,
+  entry: {
+    main: "./src/index.js",
+  },
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    chunkFilename: "[name].[contenthash].js",
+    assetModuleFilename: "images/[hash][ext][query]",
+  },
+  performance: {
+    maxAssetSize: 50000,
+    maxEntrypointSize: 50000,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
     },
-    performance: {
-        maxAssetSize: 50000,
-        maxEntrypointSize: 50000
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        type: "asset",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/,
+        loader: "url-loader",
+        options: { limit: false },
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
         },
-    },
-    module: {
-        rules: [{
-            test: /\.(png|jpg|jpeg|gif|svg)$/i,
-            type: "asset"
-        },
-        {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader'
-            }
-        },
-        {
-            test: /\.(s[ac]|c)ss$/i,
-            use: [{ loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } }, 'css-loader', {
-                loader: 'postcss-loader',
-                options: {
-                    postcssOptions: {
-                        plugins: [
-                            ['autoprefixer'],
-                            // add more postcss plugins as needed
-                        ],
-                    },
-                },
-            }, , 'sass-loader']
-        }
-        ]
-    },
-    resolve: {
-        extensions: [".js", ".jsx"]
-    },
-    plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin(), new HtmlWebPackPlugin({
-        template: "./src/index.html"
-    }), isDevelopment && new ReactRefreshWebpackPlugin(),],
-    devServer: {
-        port: 3500,
-        static: path.resolve(__dirname, 'dist'),
-        compress: true,
-    }
-}
+      },
+      {
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          { loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } },
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  ["autoprefixer"],
+                  // add more postcss plugins as needed
+                ],
+              },
+            },
+          },
+          ,
+          "sass-loader",
+        ],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+    }),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ],
+  devServer: {
+    port: 3500,
+    static: path.resolve(__dirname, "dist"),
+    compress: true,
+  },
+};
