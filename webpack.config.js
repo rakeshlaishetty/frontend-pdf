@@ -25,7 +25,8 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "build"),
     chunkFilename: "[name].[contenthash].js",
-    assetModuleFilename: "images/[hash][ext][query]"
+    assetModuleFilename: "images/[hash][ext][query]",
+    publicPath: "/"
   },
   performance: {
     maxAssetSize: 50000,
@@ -55,24 +56,25 @@ module.exports = {
         }
       },
       {
-        test: /\.(s[ac]|c)ss$/i,
-        use: [
-          { loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } },
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              postcssOptions: {
-                plugins: [
-                  ["autoprefixer"]
-                  // add more postcss plugins as needed
-                ]
-              }
-            }
-          },
-          ,
-          "sass-loader"
-        ]
+        test: /\.css$/i,
+        include: path.resolve(__dirname, "src"),
+        use: ["style-loader", "css-loader", "postcss-loader"]
+        //     use: [
+
+        //       { loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } },
+        //       "css-loader",
+        //       {
+        //         loader: "postcss-loader",
+        //         options: {
+        //           postcssOptions: {
+        //             plugins: [
+        //               ["autoprefixer"]
+        //               // add more postcss plugins as needed
+        //             ]
+        //           }
+        //         }
+        //       },
+        // ]
       }
     ]
   },
@@ -90,6 +92,7 @@ module.exports = {
   devServer: {
     port: 3500,
     static: path.resolve(__dirname, "build"),
-    compress: true
+    compress: true,
+    historyApiFallback: true
   }
 };
