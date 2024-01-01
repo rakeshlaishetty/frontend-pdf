@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/rakeshlaishetty/frontend-pdf/issues"
   },
-  "homepage": "https://github.com/rakeshlaishetty/frontend-pdf",
+  "homepage": "/",
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
