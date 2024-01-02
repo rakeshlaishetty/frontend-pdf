@@ -10,6 +10,8 @@ const About = () => {
   console.log("About");
   return <p>About</p>;
 };
+
+
 export default function App() {
   return (
      <>
@@ -18,7 +20,7 @@ export default function App() {
         <Link to={"/"}>home</Link>
       </div>
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/"  element={<Navigate to="/auth" replace />} />
       <Route path="/about" element={<About />} />
     </Routes>
      </>
