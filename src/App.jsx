@@ -1,8 +1,20 @@
-import React from "react"
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+
+const Home = () => {
+  console.log("home");
+  return <p>Home</p>;
+};
+
+const About = () => {
+  console.log("About");
+  return <p>About</p>;
+};
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  );
 }
