@@ -25,8 +25,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "build"),
     chunkFilename: "[name].[contenthash].js",
-    assetModuleFilename: "images/[hash][ext][query]",
-    publicPath: "/"
+    assetModuleFilename: "images/[hash][ext][query]"
   },
   performance: {
     maxAssetSize: 50000,
