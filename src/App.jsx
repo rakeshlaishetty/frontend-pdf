@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 const Home = () => {
   console.log("home");
@@ -12,9 +12,15 @@ const About = () => {
 };
 export default function App() {
   return (
+     <>
+     <div>
+        <Link to={"/about"}>About</Link>
+        <Link to={"/"}>home</Link>
+      </div>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
     </Routes>
+     </>
   );
 }
