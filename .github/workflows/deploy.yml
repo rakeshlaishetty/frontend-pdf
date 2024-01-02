@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
+      - name: Running Lint
+        run: npm run lint
+
       - name: Build project
         run: npm run build
 
