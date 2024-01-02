@@ -1,6 +1,6 @@
 {
   "homepage": "https://rakeshlaishetty.github.io/frontend-pdf/",
-  "name": "Web pdf Editot",
+  "name": "WebpdfEditot",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,11 +16,6 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run precommit"
-    }
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
