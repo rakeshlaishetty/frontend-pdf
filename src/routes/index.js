@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom';
 
-// project import
+// project imports
 import LoginRoutes from './LoginRoutes';
 import MainRoutes from './MainRoutes';
 
