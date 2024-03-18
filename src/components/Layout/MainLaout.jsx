@@ -4,16 +4,24 @@ import Sidebar from "../common/Sidebar"
 import { Outlet } from 'react-router-dom'
 import { FaBarsStaggered } from "react-icons/fa6";
 import Profile from "../common/Profile"
+import { useDispatch } from 'react-redux';
+import { toggle } from "../../store/slices/navSlice"
+import { useSelector } from 'react-redux';
 
 
 
 const TopbarHeight = 70
 
 const MainLayout = () => {
-  const [SidebarWidth,SetSidebarWidth] = useState(true)
+  const navState = useSelector((state)=> {
+    return state.navbar
+  })
+  console.log(navState,'navState')
+ 
+  const dispatch = useDispatch()
   
   const ChangeSidebar = () => {
-    SetSidebarWidth(prev => !prev);
+    dispatch(toggle())
   }
   
   return (
@@ -25,7 +33,7 @@ const MainLayout = () => {
             bgcolor: 'primary.secondary'
           }}>
 
-        <Sidebar SidebarWidth={SidebarWidth ? 350 : 0}/>
+        <Sidebar SidebarWidth={navState.isOpen ? 350 : 0}/>
           </Paper>
         
         {/* Main Content Area */}
