@@ -5,7 +5,6 @@ const navSlice = createSlice({
     initialState: { isOpen: true },
     reducers: {
         toggle(state, action) {
-            console.log(action.payload)
             state.isOpen = !state.isOpen;
         }
     }

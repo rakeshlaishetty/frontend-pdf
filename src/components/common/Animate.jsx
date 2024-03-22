@@ -20,9 +20,9 @@ const Animate = ({ sx, ...props }) => {
     return (
       <Box sx={{
         ...sx,
-        transition: "opacity 1s ease",
+        transition: "opacity 0.5s ease",
         opacity: opacity,
-        transitionDelay: props.delay + "s" || "unset"
+        // transitionDelay: props.delay + "s" || "unset"
       }}>
         {props.children}
       </Box>
@@ -33,9 +33,9 @@ const Animate = ({ sx, ...props }) => {
     <Box sx={{
       ...sx,
       transform: `translateY(${translateY}px)`,
-      transition: "transform 1s ease, opacity 2s ease",
+      transition: "transform 1s ease, opacity 0.5s ease",
       opacity: opacity,
-      transitionDelay: props.delay + "s" || "unset"
+      // transitionDelay: props.delay + "s" || "unset"
     }}>
       {props.children}
     </Box>
