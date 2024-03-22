@@ -1,8 +1,9 @@
+import { Link, useLocation } from 'react-router-dom';
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
 import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import OtherHousesOutlinedIcon from "@mui/icons-material/OtherHousesOutlined";
 import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
 import SportsMotorsportsOutlinedIcon from "@mui/icons-material/SportsMotorsportsOutlined";
@@ -27,57 +28,66 @@ const menus = [
   {
     title: "Dashboard",
     icon: <MailOutlinedIcon />,
-    state: "Dashboard",
+    state: "/admin/dashboard",
   },
   {
-    title: "Overview",
+    title: "Projects",
     icon: <DashboardCustomizeOutlinedIcon />,
-    state: "overview",
+    state: "/admin/projects",
   },
   {
-    title: "Notification",
-    icon: <NotificationsOutlinedIcon />,
-    state: "notification",
-  },
-];
-const serviceMenus = [
-  {
-    title: "Mortage",
-    icon: <OtherHousesOutlinedIcon />,
-    state: "mortage",
-  },
-  {
-    title: "Car loans",
-    icon: <DirectionsCarFilledOutlinedIcon />,
-    state: "carloan",
-  },
-  {
-    title: "Insurance",
-    icon: <SportsMotorsportsOutlinedIcon />,
-    state: "insurance",
-  },
-];
-
-const investmentMenus = [
-  {
-    title: "Stocks reade",
-    icon: <SwapHorizOutlinedIcon />,
-    state: "stocktrade",
-  },
-  {
-    title: "Finance advice",
+    title: "Documents",
     icon: <ChatBubbleOutlineOutlinedIcon />,
-    state: "financeadvice",
+    state: "/admin/documents",
   },
   {
-    title: "Savings accounts",
-    icon: <SavingsOutlinedIcon />,
-    state: "savingaccount",
+    title: "Track",
+    icon: <ContentPasteSearchIcon />,
+    state: "/admin/track",
   },
 ];
+// const serviceMenus = [
+//   {
+//     title: "Mortage",
+//     icon: <OtherHousesOutlinedIcon />,
+//     state: "mortage",
+//   },
+//   {
+//     title: "Car loans",
+//     icon: <DirectionsCarFilledOutlinedIcon />,
+//     state: "carloan",
+//   },
+//   {
+//     title: "Insurance",
+//     icon: <SportsMotorsportsOutlinedIcon />,
+//     state: "insurance",
+//   },
+// ];
+
+// const investmentMenus = [
+//   {
+//     title: "Stocks reade",
+//     icon: <SwapHorizOutlinedIcon />,
+//     state: "stocktrade",
+//   },
+//   {
+//     title: "Finance advice",
+//     icon: <ChatBubbleOutlineOutlinedIcon />,
+//     state: "financeadvice",
+//   },
+//   {
+//     title: "Savings accounts",
+//     icon: <SavingsOutlinedIcon />,
+//     state: "savingaccount",
+//   },
+// ];
 
 const Sidebar = ({ SidebarWidth }) => {
-  const activeState = "Dashboard";
+  const location = useLocation()
+  
+ 
+
+
 
   const container =
     window !== undefined ? () => window.document.body : undefined;
@@ -88,6 +98,8 @@ const Sidebar = ({ SidebarWidth }) => {
         disableGutters
         disablePadding
         sx={{ py: 0.5 }}
+        component={Link}
+        to={`${props.item.state}`}
       >
         <ListItemButton
           sx={{
@@ -156,14 +168,14 @@ const Sidebar = ({ SidebarWidth }) => {
               <MenuItem
                 key={index}
                 item={item}
-                isActive={item.state === activeState}
+                isActive={item.state === location.pathname}
               />
             ))}
           </List>
           {/* menu group 1 */}
 
           {/* menu group 2 */}
-          <List>
+          {/* <List>
             <ListItem>
               <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
                 Services
@@ -180,7 +192,7 @@ const Sidebar = ({ SidebarWidth }) => {
           {/* menu group 2 */}
 
           {/* menu group 3 */}
-          <List>
+          {/* <List>
             <ListItem>
               <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
                 Investments
@@ -193,7 +205,7 @@ const Sidebar = ({ SidebarWidth }) => {
                 isActive={item.state === activeState}
               />
             ))}
-          </List>
+          </List> */}
           {/* menu group 3 */}
         </Paper>
       </Animate>
