@@ -7,9 +7,13 @@ class LoginService {
       console.log(response,'res')
       return response.data;
     } catch (error) {
+      console.log(error,"ERR")
       return new Error(error?.response?.data?.message || 'An error occurred during login.');
     }
   }
 }
 
-export default new LoginService();
+const loginService = new LoginService();
+
+export default loginService;
+

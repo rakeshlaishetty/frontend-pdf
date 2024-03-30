@@ -1,13 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
-import DirectionsCarFilledOutlinedIcon from "@mui/icons-material/DirectionsCarFilledOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
-import OtherHousesOutlinedIcon from "@mui/icons-material/OtherHousesOutlined";
-import SavingsOutlinedIcon from "@mui/icons-material/SavingsOutlined";
-import SportsMotorsportsOutlinedIcon from "@mui/icons-material/SportsMotorsportsOutlined";
-import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import {
   Box,
   Drawer,
@@ -22,9 +18,10 @@ import {
 } from "@mui/material";
 import { Images } from "../../assets";
 import Animate from "./Animate";
-import { useState } from "react";
+import useUserRole from '../../utils/useUserRole';
 
-const menus = [
+
+const admin = [
   {
     title: "Dashboard",
     icon: <MailOutlinedIcon />,
@@ -45,7 +42,21 @@ const menus = [
     icon: <ContentPasteSearchIcon />,
     state: "/admin/track",
   },
+  {
+    title: "Create Profile",
+    icon: <PersonAddAlt1Icon />,
+    state: "/admin/createprofile",
+  },
 ];
+const analyst = []
+const client = []
+const employee = [ {
+  title: "Dashboard",
+  icon: <MailOutlinedIcon />,
+  state: "/employee/dashboard",
+},]
+
+const menus = {admin,analyst,client,employee}
 // const serviceMenus = [
 //   {
 //     title: "Mortage",
@@ -85,12 +96,11 @@ const menus = [
 const Sidebar = ({ SidebarWidth }) => {
   const location = useLocation()
   
- 
+  const roleName = useUserRole()
+ console.log(menus)
+  const menuItems = menus[roleName] || []; // Fallback to an empty array if roleName is invalid
 
-
-
-  const container =
-    window !== undefined ? () => window.document.body : undefined;
+  console.log(menuItems,'menuItems')
   const MenuItem = (props) => {
     return (
       <ListItem
@@ -164,7 +174,7 @@ const Sidebar = ({ SidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-            {menus.map((item, index) => (
+            {menuItems.map((item, index) => (
               <MenuItem
                 key={index}
                 item={item}

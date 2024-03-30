@@ -1,12 +1,14 @@
-
+import store from "../store/index"
 import instance from './axiosConfig';
 
 
 instance.interceptors.request.use(
     (config) => {
-      const token = store.getState().auth.token;
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+      console.log(store.getState().userData.token,"store.getState().userData.token")
+      let Token = store.getState().userData.token
+     
+      if (Token) {
+        config.headers.Authorization = `Bearer ${Token}`;
       }
       return config;
     },

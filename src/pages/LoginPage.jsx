@@ -32,7 +32,6 @@ const LoginPage = () => {
   const [formData, setformData] = useState({ email: "", password: "" });
   const [onRequest, setOnRequest] = useState(false);
   const [loginProgress, setLoginProgress] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const onChangeHandlder = (e) => {
     const { name, value } = e.target;
@@ -84,11 +83,13 @@ const LoginPage = () => {
           console.log(data.data.user.role.roleName,'data.data.user.role.roleName')
         }, 3300);
       } else {
-        alert("Sorry, login failed. Please try again.");
+
+        throw new Error(data || "something Went Wrong")
+        // alert("Sorry, login failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error occurred during login:", error);
-      alert("An error occurred during login. Please try again.");
+      console.log(error,"ERR")
+      dispatch(ShowToast({message:(error.message || "something Went Wrong"),boolean:true,icon:'error'}))
     } finally {
       setLoginProgress(0)
       setOnRequest(false);
@@ -124,9 +125,7 @@ const LoginPage = () => {
           position: "absolute",
           left: 0,
           height: "100%",
-          width: isLoggedIn
-            ? "100%"
-            : { xl: "30%", lg: "40%", md: "50%", xs: "100%" },
+          width:  { xl: "30%", lg: "40%", md: "50%", xs: "100%" },
           transition: "all 1s ease-in-out",
           bgcolor: colors.common.white,
         }}
@@ -136,7 +135,7 @@ const LoginPage = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            opacity: isLoggedIn ? 0 : 1,
+            opacity: 1,
             transition: "all 0.3s ease-in-out",
             height: "100%",
             "::-webkit-scrollbar": { display: "none" },

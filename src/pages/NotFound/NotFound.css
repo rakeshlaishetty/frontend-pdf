@@ -14,6 +14,7 @@ html, body{
   
   .section{
     padding: 4rem 2rem;
+    width: 100%;
   }
   
   .section .error{

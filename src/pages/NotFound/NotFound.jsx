@@ -1,4 +1,3 @@
-import { Container, Box } from "@mui/material";
 import "./NotFound.css";
 const NotFound = () => {
   return (

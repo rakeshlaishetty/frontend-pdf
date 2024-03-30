@@ -5,16 +5,11 @@ import AppLayout from "../components/Layout/AppLayout";
 import MainLayout from "../components/Layout/MainLaout";
 import { useSelector } from "react-redux";
 import ROLES from "../utils/roles";
+import { adminChildrens,analystChildrens,clientChildrens,employeeChildrens } from "./Routes"
 
 // Lazy-loaded components
 const LoginPage = React.lazy(() => import("../pages/LoginPage"));
-const Dashboard = React.lazy(() => import("../pages/Dashboard"));
-const NotFoundPage = React.lazy(() => import("../pages/NotFound/NotFound"));
 
-const analystChildrens = [{ path: 'dashboard', element: <Dashboard />, index: true },{ path: '*', element: <Navigate to={'dashboard'} />}];
-const adminChildrens = [{ path: 'dashboard', element: <Dashboard /> }, { path: 'projects', element: <Dashboard /> },{ path: '*', element: <Navigate to={'dashboard'} />}];
-const clientChildrens = [{ path: 'dashboard', element: <Dashboard />, index: true },{ path: '*', element: <Navigate to={'dashboard'} />}];
-const employeeChildrens = [{ path: 'dashboard', element: <Dashboard />, index: true },{ path: '*', element: <Navigate to={'dashboard'} />}];
 
 const RoleBasedPages = {
     [ROLES.analyst]: { path: 'analyst', element: <MainLayout />, children: analystChildrens },
@@ -29,16 +24,14 @@ const RoutesConfig = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate loading delay
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 2000);
 
-        // Clean up timeout
         return () => clearTimeout(timeout);
     }, []);
 
-    // Get the corresponding role based pages for the user's role
+    
     const rolePages = roleName ? RoleBasedPages[roleName] : null;
 
     return (

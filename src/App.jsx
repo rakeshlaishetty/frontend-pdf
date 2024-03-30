@@ -32,7 +32,7 @@ const ErrorFallback = () => {
   );
 };
 
-const OverlaySpinner = () => {
+export const OverlaySpinner = () => {
   return (
     <Backdrop
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}

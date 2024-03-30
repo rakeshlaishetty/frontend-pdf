@@ -1,7 +1,7 @@
 import { Box, Paper,Backdrop,CircularProgress, LinearProgress } from "@mui/material";
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect,  Suspense } from "react";
 import Sidebar from "../common/Sidebar";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import {  Outlet, useNavigate } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import Profile from "../common/Profile";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ const MainLayout = () => {
     if (!userData.token) {
       navigate("/login", { replace: true });
     }
-  }, [userData?.token]); 
+  }, [userData?.token,navigate]); 
 
   const dispatch = useDispatch();
 
@@ -90,12 +90,13 @@ const MainLayout = () => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              alignItems: "center",
               height:'auto',
+              padding:1,
               flex:1
             }}
-          ><Box>
+          >
               <Outlet />
+          <Box>
             </Box>
               </Paper>
           </Suspense>
