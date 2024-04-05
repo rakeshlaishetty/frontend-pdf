@@ -20,6 +20,38 @@ import { Images } from "../../assets";
 import Animate from "./Animate";
 import useUserRole from '../../utils/useUserRole';
 
+// const admin = [
+//   {
+//     title: "Dashboard",
+//     icon: <MailOutlinedIcon />,
+//     state: "/admin/dashboard",
+//   },
+//   {
+//     parent: "Projects",
+//     childs: [
+//       {
+//         title: "Projects",
+//         icon: <DashboardCustomizeOutlinedIcon />,
+//         state: "/admin/projects",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Documents",
+//     icon: <ChatBubbleOutlineOutlinedIcon />,
+//     state: "/admin/documents",
+//   },
+//   {
+//     title: "Track",
+//     icon: <ContentPasteSearchIcon />,
+//     state: "/admin/track",
+//   },
+//   {
+//     title: "Create Profile",
+//     icon: <PersonAddAlt1Icon />,
+//     state: "/admin/createprofile",
+//   },
+// ];
 
 const admin = [
   {
@@ -31,6 +63,11 @@ const admin = [
     title: "Projects",
     icon: <DashboardCustomizeOutlinedIcon />,
     state: "/admin/projects",
+  },
+  {
+    title: "Create Projects",
+    icon: <DashboardCustomizeOutlinedIcon />,
+    state: "/admin/projects/createproject",
   },
   {
     title: "Documents",

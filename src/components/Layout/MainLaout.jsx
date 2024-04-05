@@ -1,13 +1,31 @@
-import { Box, Paper,Backdrop,CircularProgress, LinearProgress } from "@mui/material";
-import React, { useEffect,  Suspense } from "react";
+import {
+  Box,
+  Paper,
+  Backdrop,
+  CircularProgress,
+  LinearProgress,
+} from "@mui/material";
+import React, { useEffect, Suspense } from "react";
 import Sidebar from "../common/Sidebar";
-import {  Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import Profile from "../common/Profile";
 import { useDispatch } from "react-redux";
 import { toggle } from "../../store/slices/navSlice";
 import { useSelector } from "react-redux";
+import { styled } from "@mui/material/styles";
 
+
+const Root = styled("div")(({ theme }) => ({
+  width: "100%",
+  minHeight: "100%",
+  padding: 5,
+  ...theme.typography.body2,
+  color: theme.palette.text.secondary,
+  "& > :not(style) ~ :not(style)": {
+    marginTop: theme.spacing(4),
+  },
+}));
 
 const OverlaySpinner = () => {
   return (
@@ -15,7 +33,7 @@ const OverlaySpinner = () => {
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open={true}
     >
-    <LinearProgress /> 
+      <LinearProgress />
       <CircularProgress color="inherit" />
     </Backdrop>
   );
@@ -36,7 +54,7 @@ const MainLayout = () => {
     if (!userData.token) {
       navigate("/login", { replace: true });
     }
-  }, [userData?.token,navigate]); 
+  }, [userData?.token, navigate]);
 
   const dispatch = useDispatch();
 
@@ -82,23 +100,27 @@ const MainLayout = () => {
             </Box>
           </Paper>
           <Suspense fallback={<OverlaySpinner />}>
-          <Paper
-            sx={{
-              bgcolor: "primary.secondary",
-              color: "black",
-              width: `100%`,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              height:'auto',
-              padding:1,
-              flex:1
-            }}
-          >
-              <Outlet />
-          <Box>
-            </Box>
-              </Paper>
+            <Paper
+              sx={{
+                bgcolor: "primary.secondary",
+                color: "black",
+                width: `100%`,
+                height: "100%",
+                padding: 1,
+                flex: 1,
+              }}
+            >
+              <Box sx={{ height: "100%", minHeight: "100%" }}>
+                <Root>
+                  <Box
+                    component="section"
+                    sx={{ p: 2, minHeight: "100%" }}
+                  >
+                    <Outlet />
+                  </Box>
+                </Root>
+              </Box>
+            </Paper>
           </Suspense>
         </Box>
       </Box>

@@ -5,8 +5,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import { logoutUser } from '../../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const open = Boolean(anchorEl);
@@ -19,6 +21,11 @@ export default function Profile() {
 
   const handleLogOut = () => {
     dispatch(logoutUser());
+  }
+
+  const GotoProfile = () => {
+    handleClose(null)
+    navigate("profile")
   }
 
   return (
@@ -42,7 +49,7 @@ export default function Profile() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={GotoProfile}>Profile</MenuItem>
         <MenuItem onClick={handleLogOut}>Logout</MenuItem>
       </Menu>
     </div>

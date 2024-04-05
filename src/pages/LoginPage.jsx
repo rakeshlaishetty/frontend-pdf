@@ -78,9 +78,8 @@ const LoginPage = () => {
         dispatch(adduserDetailsWithJwt(data.data));
         dispatch(ShowToast({message:"Successfully Logged in",boolean:true,icon:'success'}))
         localStorage.setItem('user', JSON.stringify(data.data));
-        navigate(`../${data.data.user.role.roleName}`);
         setTimeout(() => {
-          console.log(data.data.user.role.roleName,'data.data.user.role.roleName')
+          navigate(`../${data.data.user.role.roleName}`);
         }, 3300);
       } else {
 
