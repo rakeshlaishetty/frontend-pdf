@@ -90,7 +90,7 @@ const DisplayTable = ({ data, onRowClick, page, setPage, totalDataLength, exclud
                   {Object.keys(row)
                     .filter(key => !excluded.includes(key))
                     .map((key, cellIndex) => (
-                      <TableCell key={cellIndex}>{row[key] ? row[key] : "No Data" }</TableCell>
+                      <TableCell key={cellIndex}>{row[key] ? row[key] : "No Action" }</TableCell>
                     ))}
                 </TableRow>
               ))

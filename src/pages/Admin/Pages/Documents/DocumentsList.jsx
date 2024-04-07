@@ -14,8 +14,9 @@ const DocumentsList = () => {
   const [isLoading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalDataLength, setTotalDataLength] = useState(200);
-  const excluded = ["_id", "__v", "Project"];
+  const excluded = ["_id", "__v", "Project","Assigned"];
 
+  console.log(projects,"projects")
   const fetchDocumentsFromApi = async () => {
     setLoading(true);
     try {

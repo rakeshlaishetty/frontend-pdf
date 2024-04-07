@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import Projects from "../pages/Admin/Pages/Projects/Projects"
+const Projects = React.lazy(() => import("../pages/Admin/Pages/Projects/Projects"));
 const CreateProfile = React.lazy(() => import("../pages/Admin/Pages/Profile/CreateProfile"));
 const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 const NotFoundPage = React.lazy(() => import("../pages/NotFound/NotFound"));
@@ -9,6 +9,8 @@ const CreateProject = React.lazy(() => import("../pages/Admin/Pages/Projects/Cre
 const ProjectDocuments = React.lazy(()=> import("../pages/Admin/Pages/Projects/ProjectDocuments"))
 const DocumentsList = React.lazy(()=> import("../pages/Admin/Pages/Documents/DocumentsList"))
 const CreateDocument = React.lazy(() => import("../pages/Admin/Pages/Documents/CreateDocument"));
+const Track = React.lazy(() => import("../pages/Admin/Pages/Track/TrackList"));
+const UserTrack = React.lazy(() => import("../pages/Admin/Pages/Track/UserTrack"));
 
 
 export const adminChildrens = [
@@ -22,4 +24,6 @@ export const adminChildrens = [
   { path: "", element: <Navigate to={"dashboard"} /> },
   { path: "createprofile", element: <CreateProfile /> },
   { path: "profile", element: <ViewProfile /> },
+  { path: "track", element: <Track /> },
+  { path: "track/trackuser", element: <UserTrack /> },
 ];
